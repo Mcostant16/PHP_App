@@ -2,14 +2,17 @@
 
 
 function Get_Symbols ($db, $search)
-{
-	
+{	 
+	$wild_card_search = "%$search%";
 	$user_results = array();
 	//$v_yearvalue = SUBSTR($p_full_academic_year,2,2).SUBSTR($p_full_academic_year,7,2);
 	//$query = "select * from symbols order by Symbol limit 5";
-	$query = "select * from symbols where Symbols = :symbol";
+	$query = "select * 
+			  from symbols 
+			  where Symbol LIKE :symbol 
+			  or Name LIKE :symbol";
 	$statement_get_course = $db->prepare($query);
-	$statement_get_course->bindValue(':symbol', $search);
+	$statement_get_course->bindValue(':symbol', $wild_card_search); //used wild cards for search
 //	$statement_get_course->bindValue(':in_prefix', $p_prefix);
 //	$statement_get_course->bindValue(':in_code', $p_code);
 	try {
