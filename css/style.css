@@ -1,0 +1,192 @@
+body{
+	background-color:#f4f4f4;
+	color:555;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	line-height:1.3em;
+	margin:20px;
+}
+
+.header{
+	text-align:center;
+	line-height:1.6em;
+	background:#fff;
+	color:#000;
+}	
+
+.block-left{
+	float:left;
+	width:50%;
+	border:0px solid black;
+	padding:0 10px;
+	line-height: 3em;
+	box-sizing:border-box;
+	text-align:left;
+	list-style:none;
+	font-size:20px;
+
+}	
+
+.block-left a{
+	text-decoration:none;
+}	
+
+
+
+.block-right{
+	float:right;
+	width:50%;
+	border:0px solid black;
+	padding:0 10px;
+	line-height: 3em;
+	box-sizing:border-box;
+	text-align:right;
+	list-style:none;
+	font-size:20px;
+}	
+
+.left-text{
+	text-align:left;
+}
+
+.right-text{
+	text-align:right;
+}
+	
+.center-text{
+	text-align:center;
+}
+	
+:normal-left{
+	text-align:left;
+	font-size:10px;
+	line-height: .3em;
+}	
+
+:smaller-left{
+	text-align:left;
+	font-size:6px;
+	line-height: .3em;
+}
+.button{
+	background-color:blue;
+	font-size:20px;
+	color:white;
+}	
+.leftbutton{
+	float:left;
+	width:5%;
+	border:0px solid black;
+	padding:0 10px;
+	line-height: 3em;
+	box-sizing:border-box;
+	text-align:left;
+	list-style:none;
+	font-size:20px;	
+	background-color:blue;
+	color:white;
+}
+.container{
+	width:80%;
+	margin:auto;
+	overflow:hidden;
+}	
+
+.container-logo{
+	display:block;
+	width:10%;
+	margin:auto;
+}
+.container-picture{
+	display:block;
+	width:60%;
+	margin:auto;
+}
+
+.container-buttons{
+	display:block;
+	width:5%;
+	margin:auto;
+}
+input.search{
+	width:98%;
+	margin:auto;
+	padding:0 200px;
+}
+	
+#main-header{
+	background-color:coral;
+	color:#fff;
+}	
+
+#navbar{
+	background-color:#fff;
+	color:#000;
+}
+
+#navbar ul{
+	padding:0;
+	list-style:none;
+}	
+
+#navbar li{
+	display:inline;
+}	
+
+#navbar a{
+	color:blue;
+	text-decoration: none;
+	font-size:16px;
+	margin-right:15px;
+}
+
+#showcase{
+	background-image:url('../images/showcase.jpg');
+	background-position: center right;
+	min-height:300px;
+	margin-bottom:30px;
+	text-align:center;
+}	
+
+#showcase h1{
+	color:#fff;
+	font-size:50px;
+	line-height:1.6em;
+	padding-top:30px;
+}	
+
+#main{
+	float:left;
+	width:70%;
+	padding: 0 30px;
+	box-sizing:border-box;
+}
+
+#sidebar{
+	float:right;
+	width:30%;
+	background:#333;
+	color:#fff;
+	padding:10px;
+	box-sizing:border-box;
+}
+
+#main-footer{
+	background:#333;
+	color:#fff;
+	padding:20px;
+	text-align:center;
+	margin-top: 40px;
+}
+
+@media(max-width:600px){
+	#main{
+		width:100%;
+		float:none;
+	}
+
+	#sidebar{
+		width:100%;
+		float:none;
+	}
+}	

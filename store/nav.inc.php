@@ -4,6 +4,7 @@
   </tr>
   <tr>
     <td><a href="index.php"><strong>Home</strong></a></td>
+    <td><a href="../stocks/index.php"><strong>Stocks</strong></a></td>
   </tr>
   <tr>
     <td><hr size="1" noshade="noshade" /></td>
