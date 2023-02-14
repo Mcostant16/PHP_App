@@ -2,7 +2,8 @@
 
 
 function Get_Symbols ($search)
-{	global $db; 
+{	
+	global $db;
 	$wild_card_search = "%$search%";
 	$user_results = array();
 	//$v_yearvalue = SUBSTR($p_full_academic_year,2,2).SUBSTR($p_full_academic_year,7,2);
