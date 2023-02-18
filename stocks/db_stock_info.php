@@ -5,6 +5,7 @@ function Get_Symbols ($search)
 {	global $db; 
 	$wild_card_search = "%$search%";
 	$user_results = array();
+	var_dump($db);
 	//$v_yearvalue = SUBSTR($p_full_academic_year,2,2).SUBSTR($p_full_academic_year,7,2);
 	//$query = "select * from symbols order by Symbol limit 5";
 	$query = "select * 
@@ -12,6 +13,8 @@ function Get_Symbols ($search)
 			  where Symbol LIKE :symbol 
 			  or Name LIKE :symbol";
 	$statement_get_course = $db->prepare($query);
+	var_dump($statement_get_course);
+	//var_dump($statement_get_course);
 	$statement_get_course->bindValue(':symbol', $wild_card_search); //used wild cards for search
 //	$statement_get_course->bindValue(':in_prefix', $p_prefix);
 //	$statement_get_course->bindValue(':in_code', $p_code);

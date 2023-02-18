@@ -16,9 +16,9 @@ session_start();
    include("../store/mylibrary/showproducts.php");
    // Connect to database 
    include("models/database.php"); 
-   include 'models/db_stock_info.php'; 
+   include("models/db_stock_info.php"); 
 
-   $con = mysqli_connect("localhost", "test", "test", "stock") or die('Could not connect to server');
+  // $con = mysqli_connect("localhost", "test", "test", "stock") or die('Could not connect to server');
 ?>
 
 <body>

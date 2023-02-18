@@ -10,12 +10,7 @@
   // $query = "SELECT * from stock WHERE description REGEXP '$searchsql'";
    $query = "select * from symbols order by Symbol limit 5";
    //$result = mysqli_query($db, $query);
-   //$result = Get_Symbols($search);
-   var_dump($db);
-   print_r($db::getAvailableDrivers());
-   $symbols = new getSymbols($db,$search);
-   $result = $symbols->get_Symbols();
-  // var_dump($symbols->get_Symbols());
+   $result = Get_Symbols($search);
    //echo var_dump($result);
    if (!$result)
    {

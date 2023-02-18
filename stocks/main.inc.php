@@ -20,7 +20,7 @@
    //$stock_con = mysqli_connect("localhost", "test", "test", "stock") or die('Could not connect to server');
    $query = "SELECT * from symbols where Symbol = 'AAPL'";
    $result = mysqli_query($con, $query);
-
+   var_dump($db);
    echo "<table width=\"100%\" border=\"0\">\n";
    while($row=mysqli_fetch_array($result, MYSQLI_ASSOC))
    {

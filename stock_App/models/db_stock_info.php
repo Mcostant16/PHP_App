@@ -5,7 +5,7 @@ function Get_Symbols ($search)
 {	
 	global $db;
 	$wild_card_search = "%$search%";
-	$user_results = array();
+	$search_results = array();
 	//$v_yearvalue = SUBSTR($p_full_academic_year,2,2).SUBSTR($p_full_academic_year,7,2);
 	//$query = "select * from symbols order by Symbol limit 5";
 	$query = "select * 
@@ -13,6 +13,7 @@ function Get_Symbols ($search)
 			  where Symbol LIKE :symbol 
 			  or Name LIKE :symbol";
 	$statement_get_course = $db->prepare($query);
+	var_char($statement_get_course);
 	$statement_get_course->bindValue(':symbol', $wild_card_search); //used wild cards for search
 //	$statement_get_course->bindValue(':in_prefix', $p_prefix);
 //	$statement_get_course->bindValue(':in_code', $p_code);
@@ -21,21 +22,21 @@ function Get_Symbols ($search)
 		} catch (Exception $e) 
 			{
 				$error_message = $e->getMessage();
-				$user_results[0] = 'Error: '.$error_message;
-				return $user_results;
+				$search_results[0] = 'Error: '.$error_message;
+				return $search_results;
 				exit();
 			} 
 		try {
-        $user_results = $statement_get_course->fetchAll();
+        $search_results = $statement_get_course->fetchAll();
 		} catch (Exception $e) 
 			{
-				$user_results[0] = 'Error: '.$error_message;
-				return $user_results;
+				$search_results[0] = 'Error: '.$error_message;
+				return $search_results;
 				exit();
 			}		
 	$statement_get_course->closeCursor();
 
-	return $user_results;
+	return $search_results;
 }
 ////////////////////////////////////////////////////////////////////////
 // Function to return COURSE variables for all courses
@@ -46,6 +47,107 @@ function Get_Symbols ($search)
 //     Returned value = array $user_results
 //                      If errors are encountered, the first element
 //                         in the array will begin with "Error:"
+
+function Get_All_Symbols ()
+{
+	global $db;
+	$symbol_results = array();
+	//$v_yearvalue = SUBSTR($p_full_academic_year,2,2).SUBSTR($p_full_academic_year,7,2);
+	//$query = "select * from symbols order by Symbol limit 5";
+	$query = "select * 
+			  from symbols";
+	$statement_get_course = $db->prepare($query);
+	try {
+        $statement_get_course->execute();
+		} catch (Exception $e) 
+			{
+				$error_message = $e->getMessage();
+				$user_results[0] = 'Error: '.$error_message;
+				return $user_results;
+				exit();
+			} 
+		try {
+        $symbol_results = $statement_get_course->fetchAll();
+		} catch (Exception $e) 
+			{
+				$symbol_results[0] = 'Error: '.$error_message;
+				return $symbol_results;
+				exit();
+			}		
+	$statement_get_course->closeCursor();
+
+	return $symbol_results;
+
+}
+
+class getSymbols {
+	public $db;
+	private $wild_card_search;
+	private $search_results = array();
+	private $statement_get_course;
+	private $search;
+	private $query;
+	
+	public function __construct(PDO $db, $search) {
+    	$this->db = $db;
+    	$this->search = "%$search%";
+  	}
+
+	public function setQuery($db, $query) {
+    	$this->db = $db->prepare($query);
+	
+		//$this->statement_get_course = $this->db;
+    	
+  	}
+	
+	public function get_Symbols() {
+	//$this->wild_card_search = "%search%";
+	
+	//$v_yearvalue = SUBSTR($p_full_academic_year,2,2).SUBSTR($p_full_academic_year,7,2);
+	//$query = "select * from symbols order by Symbol limit 5";
+	$symbol_query = "select * 
+			  		from symbols 
+			  		where Symbol LIKE :symbol 
+			  		or Name LIKE :symbol";
+	var_dump($query);
+	var_dump($this->db);
+	//$this->db->prepare($query);
+	$this->setQuery($this->db, $symbol_query);
+	var_dump($this->db);
+	var_dump($db);
+	$this->statement_get_course = $this->db;
+	//$this->db->prepare($symbol_query);
+	//$this->statement_get_course = $this->db->prepare($query);
+	var_dump($this->statement_get_course);
+	$this->db->bindValue(':symbol', $this->search); 
+	//var_dump($statement_get_course);
+	//used wild cards for search
+//	$statement_get_course->bindValue(':in_prefix', $p_prefix);
+//	$statement_get_course->bindValue(':in_code', $p_code);
+    var_dump($this->db);
+	try {
+        $this->db->execute();
+		} catch (Exception $e) 
+			{
+				$error_message = $e->getMessage();
+				$this->search_results[0] = 'Error: '.$error_message;
+				return $this->search_results;
+				exit();
+			} 
+		try {
+        $this->search_results = $this->db->fetchAll();
+		} catch (Exception $e) 
+			{
+				$search_results[0] = 'Error: '.$error_message;
+				return $search_results;
+				exit();
+			}		
+	$this->db->closeCursor();
+	//var_dump($this->search_results);	
+	return $this-> search_results;
+	}
+}
+
 function Get_all_COURSE ($db)
 {
 	
