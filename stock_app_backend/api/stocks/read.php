@@ -13,7 +13,7 @@ include_once '../objects/stocks.php';
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
-$search = 'A';
+$search = 'AA';
 // initialize object
 $symbols = new Symbols($db, $search);
 

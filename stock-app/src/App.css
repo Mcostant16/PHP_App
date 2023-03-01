@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.carousel-sample{
+  display: 'block'; 
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+}
+
+.bt-Table2 {
+  font-family: sans-serif;
+  text-align: center;
+}
