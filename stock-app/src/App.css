@@ -39,7 +39,7 @@
 
 .carousel-sample{
   display: 'block'; 
-  max-width: 900px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 30px;
@@ -48,4 +48,10 @@
 .bt-Table2 {
   font-family: sans-serif;
   text-align: center;
+  display: 'block'; 
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+ /* padding-left: 100px;
+  padding-right: 100px; */
 }

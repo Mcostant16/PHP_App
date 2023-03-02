@@ -13,7 +13,8 @@ include_once '../objects/stocks.php';
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
-$search = 'AA';
+//was going to use search but I return all the data and then search through the client
+$search = '';
 // initialize object
 $symbols = new Symbols($db, $search);
 

@@ -15,10 +15,8 @@ function Search() {
     <button type="submit"><i className="fa fa-search"></i></button>
     <input name="content" type="hidden" value="search" />
   </form>
-  
-
-  </div>
-  )
+</div>
+)
 }
 
   function Stocks() {
