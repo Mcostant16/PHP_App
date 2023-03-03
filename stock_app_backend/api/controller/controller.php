@@ -4,7 +4,32 @@ class Controller
     /** 
 * __call magic method. 
 */
-    public function __call($name, $arguments)
+//private $url;
+
+function __construct() {
+    $this->uri = $_SERVER['REQUEST_URI'];
+    $this->method = $_SERVER['REQUEST_METHOD'];
+  }
+
+public function  main_function() {
+
+     $endpoint = $this->getUriSegments();
+     $activity = $this->getMethod();
+     //var_dump($this->getUriSegments());
+     //var_dump($endpoint);
+     switch  ($endpoint[3]) {
+        case "getHistory":
+            return $endpoint[3].'_'.$activity;
+        case "getSymbols":
+            return $endpoint[3].'_'.$activity;
+        default:
+            header("HTTP/1.1 404 Not Found");
+            return "Page Not Found";
+     }
+}
+
+
+public function __call($name, $arguments)
     {
         $this->sendOutput('', array('HTTP/1.1 404 Not Found'));
     }
@@ -13,13 +38,25 @@ class Controller
 * 
 * @return array 
 */
-    public function getUriSegments()
+    private function getUriSegments()
     {
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $uri = explode( '/', $uri );
-        return $uri;
+        $url = parse_url($this->uri, PHP_URL_PATH);
+        $url = explode( '/', $url );
+        //var_dump($this->url);
+        return $url;
     }
-    /** 
+/* 
+    * Get Method. 
+    * 
+    * @return array 
+*/
+    private function getMethod()
+        {
+            $method = $this->method;
+            return $method;
+        }
+/** 
+ *
 * Get querystring params. 
 * 
 * @return array 

@@ -15,7 +15,7 @@ include_once '../objects/historical.php';
 $database = new Database();
 $db = $database->getConnection();
 
-  public function get_upload_records() {
+  public function uploadRecords() {
     $ticker = 'NFLX';
     $iMonth = 1;
     $iDay = 1;

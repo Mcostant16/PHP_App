@@ -28,7 +28,10 @@ echo "It worked AgainS";
 //var_dump(__DIR__);
 //echo $uri[3];  
 $controller = new Controller;
-$uri_segments = $controller->getUriSegments();
-var_dump($uri_segments);
+#$method = $controller->getMethod();
+$method = $controller->main_function();
+//$uri_segments = $controller->getUriSegments();
+var_dump($method);
+//var_dump($uri_segments);
 
 ?>
