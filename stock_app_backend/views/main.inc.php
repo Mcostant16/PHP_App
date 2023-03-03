@@ -20,6 +20,11 @@
   // include('historical.py') ;
    //$stock_con = mysqli_connect("localhost", "test", "test", "stock") or die('Could not connect to server');
    $query = "SELECT * from symbols where Symbol = 'AAPL'";
+include_once 'models/database.php';
+include_once 'api/objects/historical.php';
+// instantiate database and product object
+$database = new Database();
+$db = $database->getConnection();
 
 $ticker = 'NFLX';
 $iMonth = 1;
@@ -37,15 +42,26 @@ $interval = '1wk'; # 1d, 1m
  $s = array();
  #$t = array();
  foreach($rows as $row) {
-      $t= str_getcsv($row)  ; 
-    #array_push($t, $ticker);    
-    $t[] = $ticker; 
-    #  var_dump($t);
+    $t= str_getcsv($row)  ; 
+    #array_push($t, $ticker);   
+    array_unshift($t , $ticker);
+    $t[] = $interval; 
+   # $t[] = $ticker; 
+   #  var_dump($t);
+
      $s[] = $t;
         unset($t);
  }
  #print_r($s);
- var_dump($s);
+ # var_dump($s);  # un comment to see results
+
+ //isntantiate class for inserting history records
+$insertHistory = new Insert_Stock_History($db, $s);
+
+// read products will be here
+
+// Insert History Records
+$stmt = $insertHistory->insert_Records();
  #var_dump($data);
   
 ?>
