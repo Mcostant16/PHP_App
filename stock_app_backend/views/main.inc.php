@@ -17,40 +17,35 @@
 </form>
 
 <?php
+  // include('historical.py') ;
    //$stock_con = mysqli_connect("localhost", "test", "test", "stock") or die('Could not connect to server');
    $query = "SELECT * from symbols where Symbol = 'AAPL'";
-   $result = mysqli_query($con, $query);
-   var_dump($db);
-   echo "<table width=\"100%\" border=\"0\">\n";
-   while($row=mysqli_fetch_array($result, MYSQLI_ASSOC))
-   {
-      $prodid = $row['Symbol'];
-      $description = $row['Name'];
-      $price = $row['Market Cap'];
-      $quantity = $row['Volume'];
- 
-      echo "<tr><td>\n";
-         echo "<img src=\"showimage.php?id=$prodid\" width=\"80\" height=\"60\">";
-      echo "</td><td>\n";
-         echo "<font size=\"3\"><b><u>$prodid</u></b></font>\n";
-      echo "</td><td>\n";
-         if ($quantity == 0)
-            echo "<font size=\"3\">$description</font>\n";
-         else
-         {
-            echo "<a href=\"index.php?content=updatecart&id=$prodid\">";
-            echo "<font size=\"3\"><b><u>$description</u></b></font>\n";
-         }
-      echo "</td><td>\n";
-         printf("$%.2f\n", $price);
-      echo "</td><td>\n";
-         if ($quantity == 0)
-            echo "<font color=\"red\">Sorry, this item out of stock</font>\n";
-         else if ($quantity < 5)
-            echo "Hurry, only $quantity left in stock!\n";
-         else
-            echo " \n";
-      echo "</td></tr>\n";
-   }
-   echo "</table>\n";
+
+$ticker = 'NFLX';
+$iMonth = 1;
+$iDay = 1;
+$iYear = 1980;
+$timestampStart = mktime(0,0,0,$iMonth,$iDay,$iYear);
+$timestampEnd = time();
+#$period1 = int(time.mktime(datetime.datetime(2020, 1, 1, 23, 59).timetuple()));
+#$period2 = int(time.mktime(datetime.datetime(2020, 12, 31, 23, 59).timetuple()));
+$interval = '1wk'; # 1d, 1m
+ //  $result = mysqli_query($con, $query);
+ $data = file_get_contents("https://query1.finance.yahoo.com/v7/finance/download/$ticker?period1=$timestampStart&period2=$timestampEnd&interval=$interval&events=history&includeAdjustedClose=true");
+ $rows = explode("\n",$data);
+ #var_dump($rows);
+ $s = array();
+ #$t = array();
+ foreach($rows as $row) {
+      $t= str_getcsv($row)  ; 
+    #array_push($t, $ticker);    
+    $t[] = $ticker; 
+    #  var_dump($t);
+     $s[] = $t;
+        unset($t);
+ }
+ #print_r($s);
+ var_dump($s);
+ #var_dump($data);
+  
 ?>

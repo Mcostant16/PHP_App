@@ -90,7 +90,7 @@ export default function MyComponent (){
             {
               icon: tableIcons.Delete,
               tooltip: "Delete User",
-              onClick: (event, rowData) => {ref.current.log()},
+              onClick: (event, rowData) => {ref.current.log("Delete Stock: " + rowData.name)},
             },
             {
               icon: tableIcons.Add,

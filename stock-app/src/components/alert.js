@@ -5,11 +5,11 @@ import "react-confirm-alert/src/react-confirm-alert.css";
 
 const Alert = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
-    log() {
+    log(message) {
       console.log("child function");
       confirmAlert({
         title: "Confirm to submit",
-        message: 'Hello this is a message',
+        message: message,
         buttons: [
           {
             label: "Yes",
