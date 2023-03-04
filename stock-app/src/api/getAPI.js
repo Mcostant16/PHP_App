@@ -49,7 +49,7 @@ export default function MyComponent (){
    const [items, setItems] = useState([]);
  
     useEffect(() => {
-      fetch("http://localhost/stock_app_backend/api/stocks/read.php")
+      fetch("http://localhost/stock_app_backend/api/stocks_api/read.php")
         .then(res => res.json())
         .then(
           (result) => {

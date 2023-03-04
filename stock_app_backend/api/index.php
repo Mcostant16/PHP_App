@@ -24,7 +24,7 @@ $uri = explode( '/', $uri );
 // everything else results in a 404 Not Found
 http_response_code(200);
 
-echo "It worked AgainS";  
+//echo "It worked AgainS";  
 //var_dump(__DIR__);
 //echo $uri[3];  
 $controller = new Controller;

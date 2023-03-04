@@ -1,5 +1,5 @@
 <?php
-include 'stocks_api/insert_stock.php';
+include_once 'stocks_api/insert_stock.php';
 class Controller
 {
     /** 
@@ -30,8 +30,11 @@ public function  main_function() {
         case "getSymbols":
             return $endpoint[3].'_'.$activity;
         default:
+            //this route needs to be built
             header("HTTP/1.1 404 Not Found");
-            return "Page Not Found";
+            include_once 'stocks_api/read.php';
+            exit();
+            //return "Page Not Found";
      }
 }
 
