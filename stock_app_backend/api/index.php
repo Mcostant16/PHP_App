@@ -14,7 +14,7 @@ function myAutoloader($className)
 {
     $path = 'stocks/';
 
-    include $path.$className.'.php';
+    //include $path.$className.'.php';
 }
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -33,5 +33,7 @@ $method = $controller->main_function();
 //$uri_segments = $controller->getUriSegments();
 var_dump($method);
 //var_dump($uri_segments);
+
+//include $path.$className.'.php';
 
 ?>

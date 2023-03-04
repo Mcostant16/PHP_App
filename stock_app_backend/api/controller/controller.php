@@ -1,4 +1,5 @@
 <?php
+include 'stocks_api/insert_stock.php';
 class Controller
 {
     /** 
@@ -9,16 +10,22 @@ class Controller
 function __construct() {
     $this->uri = $_SERVER['REQUEST_URI'];
     $this->method = $_SERVER['REQUEST_METHOD'];
+    $this->query_string = $_SERVER['QUERY_STRING'];
+    //var_dump($_SERVER['QUERY_STRING']);
   }
 
 public function  main_function() {
 
      $endpoint = $this->getUriSegments();
      $activity = $this->getMethod();
+     //$params   = $this->getQueryStringParams();
+     //var_dump($params);
      //var_dump($this->getUriSegments());
      //var_dump($endpoint);
      switch  ($endpoint[3]) {
         case "getHistory":
+            $addStocks = new Insert_Stock; 
+            $addStocks->uploadRecords();
             return $endpoint[3].'_'.$activity;
         case "getSymbols":
             return $endpoint[3].'_'.$activity;
@@ -61,9 +68,12 @@ public function __call($name, $arguments)
 * 
 * @return array 
 */
-    protected function getQueryStringParams()
+    private function getQueryStringParams()
     {
-        return parse_str($_SERVER['QUERY_STRING'], $query);
+            parse_str($this->query_string, $query);
+           // $query = explode( '/', $query );
+           //print_r($query);
+            return $query;
     }
     /** 
 * Send API output. 

@@ -1,6 +1,7 @@
 <?php
 //this classes call the historial.php object which inserts history into the database
-
+include_once '../models/database.php';
+include_once 'objects/historical.php';
 class Insert_Stock {
   // required headers
 //can change the Header to only allow front end when done. 
@@ -9,11 +10,13 @@ class Insert_Stock {
 //header("Access-Control-Allow-Origin: *");
 //header("Content-Type: application/json; charset=UTF-8");
 
-include_once '../../models/database.php';
-include_once '../objects/historical.php';
+  function __construct() {
+    $this->database = new Database();
+    $this->db = $this->database->getConnection();
+  }
+
 // instantiate database and product object
-$database = new Database();
-$db = $database->getConnection();
+
 
   public function uploadRecords() {
     $ticker = 'NFLX';
@@ -46,7 +49,7 @@ $db = $database->getConnection();
 # var_dump($s);  # un comment to see results
 
 //isntantiate class for inserting history records
-  $insertHistory = new Insert_Stock_History($db, $s);
+  $insertHistory = new Insert_Stock_History($this->db, $s);
 
 // read products will be here
 
