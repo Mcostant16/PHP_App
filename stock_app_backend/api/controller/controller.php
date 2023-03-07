@@ -18,21 +18,31 @@ public function  main_function() {
 
      $endpoint = $this->getUriSegments();
      $activity = $this->getMethod();
+     $x = 4; #var to check if uri has 4th segmant
      //$params   = $this->getQueryStringParams();
      //var_dump($params);
      //var_dump($this->getUriSegments());
      //var_dump($endpoint);
-     switch  ($endpoint[3]) {
+     //check if the uri has fourth segment if it does not get the third segment
+     if (!$endpoint[$x]) {
+              $x = 3; 
+       }
+    //var_dump($endpoint[$x]);
+     switch  ($endpoint[$x]) {
         case "getHistory":
             $addStocks = new Insert_Stock; 
             $addStocks->uploadRecords();
-            return $endpoint[3].'_'.$activity;
+            return $endpoint[$x].'_'.$activity;
         case "getSymbols":
-            return $endpoint[3].'_'.$activity;
-        default:
-            //this route needs to be built
+            return $endpoint[$x].'_'.$activity;
+        case "read":
             header("HTTP/1.1 404 Not Found");
             include_once 'stocks_api/read.php';
+            exit();
+        default:
+            //this route needs to be built
+            //header("HTTP/1.1 404 Not Found");
+            //include_once 'stocks_api/read.php';
             exit();
             //return "Page Not Found";
      }

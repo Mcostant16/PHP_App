@@ -4,7 +4,7 @@ import Carousel from '../../node_modules/react-bootstrap/Carousel';
 
 function CarouselHome() {
     const [index, setIndex] = useState(0);
-
+    //console.log("Carousel");
     const handleSelect = (selectedIndex, e) => {
       setIndex(selectedIndex);
     };

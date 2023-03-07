@@ -47,14 +47,16 @@ export default function MyComponent (){
    const [error, setError] = useState(null);
    const [isLoaded, setLoaded] = useState(false);
    const [items, setItems] = useState([]);
- 
+  //load symbols once component is rendered 
     useEffect(() => {
-      fetch("http://localhost/stock_app_backend/api/stocks_api/read.php")
+      fetch("http://localhost/stock_app_backend/api/stocks_api/read")
         .then(res => res.json())
         .then(
           (result) => {
              setLoaded(true);
               setItems(result.records);
+             // console.log(result.records);
+             //console.log(1);
            },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -64,7 +66,7 @@ export default function MyComponent (){
             setError(error);
           }
         )
-    });
+    },[]);
 
 
   
@@ -91,6 +93,11 @@ export default function MyComponent (){
               icon: tableIcons.Delete,
               tooltip: "Delete User",
               onClick: (event, rowData) => {ref.current.log("Delete Stock: " + rowData.name)},
+            },
+            {
+              icon: tableIcons.Add,
+              tooltip: "Add Stock History",
+              onClick: (event, rowData) => {ref.current.log("Add Stock History: " + rowData.name)},
             },
             {
               icon: tableIcons.Add,
