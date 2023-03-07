@@ -11,7 +11,7 @@ import MaterialTable from 'material-table';
 import tableIcons  from '../components/materialicons.js';
 import { ThemeProvider, createTheme } from '@mui/material';
 import Child from '../components/alert.js';
-
+import {PostSymbolHistory} from "../services/indexservices.js";
 //const { forwardRef, useRef, useImperativeHandle } = React;
 
 const defaultMaterialTheme = createTheme({
@@ -97,7 +97,8 @@ export default function MyComponent (){
             {
               icon: tableIcons.Add,
               tooltip: "Add Stock History",
-              onClick: (event, rowData) => {ref.current.log("Add Stock History: " + rowData.name)},
+              //onclick call the alert component method current.log and pass it the message along with the method to add stock historical data
+              onClick: (event, rowData) => {ref.current.log("Add Stock History: " + rowData.name,PostSymbolHistory,rowData.id)},
             },
             {
               icon: tableIcons.Add,

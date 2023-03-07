@@ -6,15 +6,16 @@ import {PostSymbolHistory} from "../services/indexservices.js";
 
 const Alert = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
-    log(message) {
-      console.log("child function");
+    log(message, func, symbol) {
+      //console.log("child function");
       confirmAlert({
         title: "Confirm to submit",
         message: message,
         buttons: [
           {
             label: "Yes",
-            onClick: () => PostSymbolHistory() //alert("Click Yes")
+            //call the function that was passed with the correct key
+            onClick: () => func(symbol) //PostSymbolHistory(symbol) //alert("Click Yes")
           },
           {
             label: "No"
@@ -25,7 +26,7 @@ const Alert = forwardRef((props, ref) => {
     }
   }));
 
-  return <></>;
+  return <div></div>;
 });
 
 

@@ -1,12 +1,12 @@
 //import {React, useState} from 'react';
 
-function RetrievePostHistory() {
+function RetrievePostHistory(symbol) {
  //   const [error, setError] = useState(null);
 //    const [isLoaded, setLoaded] = useState(false);
  //   const [items, setItems] = useState([]);
  var Hello = "hello";
  var People = "People";
-fetch("http://localhost/stock_app_backend/api/getHistory", {
+fetch(`http://localhost/stock_app_backend/api/getHistory?symbol=${encodeURIComponent(symbol)}`, {
 
     method: 'POST',
      headers: {
@@ -21,14 +21,14 @@ fetch("http://localhost/stock_app_backend/api/getHistory", {
 }).then(res => {
     if (!res.ok) {
         throw new Error(`HTTP error! Status: ${res.status}`);
-      }
+      } 
       return res.json();
     })
         .then(
           (result) => {
            //  setLoaded(true);
            //   setItems(result.records);
-           console.log(result);
+           //console.log(result);
            },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow

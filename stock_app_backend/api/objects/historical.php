@@ -29,7 +29,7 @@ class Insert_Stock_History{
             throw $e;
             return var_dump("There was an error:". $e);
         }
-        return var_dump("No issues");
+        return json_encode("No issues");
     }
 }
 ?>

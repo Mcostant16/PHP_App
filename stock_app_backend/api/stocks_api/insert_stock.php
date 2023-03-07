@@ -9,17 +9,19 @@ class Insert_Stock {
 //taking this out and call this class from the index router
 //header("Access-Control-Allow-Origin: *");
 //header("Content-Type: application/json; charset=UTF-8");
-
-  function __construct() {
+private $stock;
+  function __construct($symbol) {
     $this->database = new Database();
     $this->db = $this->database->getConnection();
+    $this->stock = $symbol;
+
   }
 
 // instantiate database and product object
 
 
   public function uploadRecords() {
-    $ticker = 'NFLX';
+    $ticker = $this->stock;
     $iMonth = 1;
     $iDay = 1;
     $iYear = 1980;

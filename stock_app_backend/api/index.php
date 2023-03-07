@@ -31,7 +31,9 @@ $controller = new Controller;
 #$method = $controller->getMethod();
 $method = $controller->main_function();
 //$uri_segments = $controller->getUriSegments();
-var_dump($method);
+//var_dump($method);
+//in order to not throw an error on the return json needs to be returned.
+echo json_encode($method);
 //var_dump($uri_segments);
 
 //include $path.$className.'.php';

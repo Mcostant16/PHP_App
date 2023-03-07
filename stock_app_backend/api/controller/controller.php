@@ -18,6 +18,10 @@ public function  main_function() {
 
      $endpoint = $this->getUriSegments();
      $activity = $this->getMethod();
+     $params = $this->getQueryStringParams();
+     //print_r($params['symbol'] . 'Hello World');
+     //var_dump($params['symbol']);
+ 
      $x = 4; #var to check if uri has 4th segmant
      //$params   = $this->getQueryStringParams();
      //var_dump($params);
@@ -30,7 +34,7 @@ public function  main_function() {
     //var_dump($endpoint[$x]);
      switch  ($endpoint[$x]) {
         case "getHistory":
-            $addStocks = new Insert_Stock; 
+            $addStocks = new Insert_Stock($params['symbol']); 
             $addStocks->uploadRecords();
             return $endpoint[$x].'_'.$activity;
         case "getSymbols":
@@ -84,8 +88,8 @@ public function __call($name, $arguments)
     private function getQueryStringParams()
     {
             parse_str($this->query_string, $query);
-           // $query = explode( '/', $query );
-           //print_r($query);
+            //$query = explode( '/', $query );
+            //print_r($query);
             return $query;
     }
     /** 
