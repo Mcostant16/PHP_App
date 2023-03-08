@@ -3,7 +3,6 @@ import { forwardRef, useImperativeHandle, useRef } from "react";
 import Table from 'react-bootstrap/Table';
 import '../App.css';
 import Alert from '../components/alert.js';
-
 //import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 //import BootstrapTable from "react-bootstrap-table-next";
 //import paginationFactory from "react-bootstrap-table2-paginator";
@@ -11,6 +10,7 @@ import MaterialTable from 'material-table';
 import tableIcons  from '../components/materialicons.js';
 import { ThemeProvider, createTheme } from '@mui/material';
 import Child from '../components/alert.js';
+import MaterialDetail from '../components/stockdetail.js';
 import {PostSymbolHistory, DeleteSymbolHistory} from "../services/indexservices.js";
 //const { forwardRef, useRef, useImperativeHandle } = React;
 
@@ -22,28 +22,9 @@ const defaultMaterialTheme = createTheme({
 
 
 
-const columns = [
-  {
-    dataField: "id",
-    text: "Stock ID",
-    sort: true
-  },
-  {
-    dataField: "name",
-    text: "Stock Name",
-    sort: true
-  },
-  {
-    dataField: "Volume",
-    text: "Volume"
-  }
-];   
-
-
-
 export default function MyComponent (){
   const ref = useRef();
-    
+  const [data, setData] = useState([]);
    const [error, setError] = useState(null);
    const [isLoaded, setLoaded] = useState(false);
    const [items, setItems] = useState([]);
@@ -79,14 +60,12 @@ export default function MyComponent (){
       } else {
         return (
             <div className='bt-Table2'>
-             
-          <h1>API Table</h1>
           <Alert ref={ref} />
           
        
           <ThemeProvider theme={defaultMaterialTheme}>
           <MaterialTable
-           title="Demo Title"
+           title="Stock History"
            icons={tableIcons}
            actions={[
             {
@@ -114,6 +93,22 @@ export default function MyComponent (){
             { title: 'Industry', field: 'industry' }
           ]}
           data={items}
+          options={{actionsColumnIndex: -1, detailPanelType: "single" }}
+          detailPanel={(rowData) => {
+            return (<MaterialDetail name={rowData.name} />);
+              }}
+          onRowClick={(event, rowData, togglePanel) => {
+            // Copy row data and set checked state
+            togglePanel();
+            const rowDataCopy = { ...rowData };
+            console.log(rowData.name);
+            rowDataCopy.tableData.checked = !rowDataCopy.tableData.checked;
+            // Copy data so we can modify it
+            const dataCopy = [...data];
+            // Find the row we clicked and update it with `checked` prop
+            dataCopy[rowDataCopy.tableData.id] = rowDataCopy;
+            setData(dataCopy);
+          }}
          />
         </ThemeProvider> 
       </div>

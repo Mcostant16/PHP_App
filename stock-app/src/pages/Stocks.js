@@ -1,5 +1,6 @@
 import MyComponent from '../api/getAPI';
 import './stocks.css';
+import MaterialDetail from '../components/stockdetail.js';
 
 
 
@@ -23,9 +24,14 @@ function Search() {
   function Stocks() {
     return (
       <>
-        <h1>Who lives in my Garage?</h1>
-        <Search />
-        <MyComponent />
+       <center>
+         <h1>Upload or Delete Stock History</h1>
+       </center>
+       {/* Commented Out
+        <Search/>
+                */}
+        <MaterialDetail  name="Sara"/>
+        <MyComponent/>
        
 
       </>

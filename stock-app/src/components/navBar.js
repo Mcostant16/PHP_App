@@ -23,6 +23,7 @@ function NavScroll() {
           >
             <Nav.Link as={Link} to="/">Home</Nav.Link>
             <Nav.Link as={Link} to="/stocks">Stocks</Nav.Link>
+            <Nav.Link as={Link} to="/stockinfo">Stock Info</Nav.Link>
          
            
             <NavDropdown title="Link" id="navbarScrollingDropdown">

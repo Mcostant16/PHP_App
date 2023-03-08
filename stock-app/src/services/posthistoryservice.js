@@ -25,7 +25,7 @@ fetch(`http://localhost/stock_app_backend/api/getHistory?symbol=${encodeURICompo
         throw new Error(`HTTP error! Status: ${res.status}`);
       } else {
          console.log(`Success: ${res.status}`);
-         toast.success(`Stock Hostory Successfully Uploaded for ${symbol}!`);
+         toast.success(`Stock Hostory Successfully Uploaded for ${symbol}!`, { theme: "colored" });
 
       }
       return res.json();
