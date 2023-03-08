@@ -11,7 +11,7 @@ import MaterialTable from 'material-table';
 import tableIcons  from '../components/materialicons.js';
 import { ThemeProvider, createTheme } from '@mui/material';
 import Child from '../components/alert.js';
-import {PostSymbolHistory} from "../services/indexservices.js";
+import {PostSymbolHistory, DeleteSymbolHistory} from "../services/indexservices.js";
 //const { forwardRef, useRef, useImperativeHandle } = React;
 
 const defaultMaterialTheme = createTheme({
@@ -92,7 +92,7 @@ export default function MyComponent (){
             {
               icon: tableIcons.Delete,
               tooltip: "Delete User",
-              onClick: (event, rowData) => {ref.current.log("Delete Stock: " + rowData.name)},
+              onClick: (event, rowData) => {ref.current.log("Delete Stock: " + rowData.name,DeleteSymbolHistory,rowData.id)},
             },
             {
               icon: tableIcons.Add,

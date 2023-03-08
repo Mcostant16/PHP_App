@@ -1,5 +1,5 @@
 <?php
-include_once 'stocks_api/insert_stock.php';
+include_once 'stocks_api/stockhistory.php';
 class Controller
 {
     /** 
@@ -34,7 +34,7 @@ public function  main_function() {
     //var_dump($endpoint[$x]);
      switch  ($endpoint[$x]) {
         case "getHistory":
-            $addStocks = new Insert_Stock($params['symbol']); 
+            $addStocks = new StockHistory($params['symbol']); 
             $addStocks->uploadRecords();
             return $endpoint[$x].'_'.$activity;
         case "getSymbols":
@@ -43,6 +43,10 @@ public function  main_function() {
             header("HTTP/1.1 404 Not Found");
             include_once 'stocks_api/read.php';
             exit();
+        case "deleteHistory":
+            $deleteStocks = new StockHistory($params['symbol']); 
+            $deleteStocks->deleteRecords();
+            return $endpoint[$x].'_'.$activity;
         default:
             //this route needs to be built
             //header("HTTP/1.1 404 Not Found");

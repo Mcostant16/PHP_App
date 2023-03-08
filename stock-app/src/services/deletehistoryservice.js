@@ -2,15 +2,15 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-function RetrievePostHistory(symbol) {
+function DeleteHistory(symbol) {
  //   const [error, setError] = useState(null);
 //    const [isLoaded, setLoaded] = useState(false);
  //   const [items, setItems] = useState([]);
  var Hello = "hello";
  var People = "People";
-fetch(`http://localhost/stock_app_backend/api/getHistory?symbol=${encodeURIComponent(symbol)}`, {
+fetch(`http://localhost/stock_app_backend/api/deleteHistory?symbol=${encodeURIComponent(symbol)}`, {
 
-    method: 'POST',
+    method: 'DELETE',
      headers: {
             'Content-type': 'application/json; charset=UTF-8',
          },
@@ -25,7 +25,7 @@ fetch(`http://localhost/stock_app_backend/api/getHistory?symbol=${encodeURICompo
         throw new Error(`HTTP error! Status: ${res.status}`);
       } else {
          console.log(`Success: ${res.status}`);
-         toast.success(`Stock Hostory Successfully Uploaded for ${symbol}!`);
+         toast.success(`Stock Hostory Successfully Deleted for ${symbol}!`);
 
       }
       return res.json();
@@ -47,4 +47,4 @@ fetch(`http://localhost/stock_app_backend/api/getHistory?symbol=${encodeURICompo
     
 }
 
-export default RetrievePostHistory;
+export default DeleteHistory;

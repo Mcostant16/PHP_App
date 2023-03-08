@@ -2,6 +2,7 @@ import MyComponent from '../api/getAPI';
 import './stocks.css';
 
 
+
 function Search() {
    return ( 
   <div className="search-box">
@@ -25,6 +26,8 @@ function Search() {
         <h1>Who lives in my Garage?</h1>
         <Search />
         <MyComponent />
+       
+
       </>
     );
   }
