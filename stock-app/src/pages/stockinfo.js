@@ -2,9 +2,14 @@
 import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import {GetStockSymbols} from '../services/getstocksymbols';
 function StockInfo() {
 
-    const stockpage = [
+const items = GetStockSymbols();  
+
+//console.log(items); 
+
+    const stockpage1 = [
         {
           name: `Apple`,
         },
@@ -15,11 +20,12 @@ function StockInfo() {
           name: `Afrin`,
         },
       ];
-    return (
+     
+      return (
       <>
       {
-      stockpage.map((stockInfo,index) => (
-        <div key={index}>
+      items.map((stockInfo,index) => (
+       // <div key={index}>
 
 <Link
 
@@ -29,15 +35,15 @@ generated each page's unqiue url from the array the pre-fixed main
 path stays the same */
 
         to={`/stockinfo/${stockInfo.name}`}
-        state={{ stockpage }}
+        state={{ stockpage1 }}
         key={index}
       >
         <Card
           source={stockInfo.name}
           key={index}
-        />
-         <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+          style={{ width: '18rem' }}
+        >
+         <Card.Img variant="top" src="holder.js/100px180" />
       <Card.Body>
         <Card.Title>{stockInfo.name}</Card.Title>
         <Card.Text>
@@ -48,7 +54,7 @@ path stays the same */
       </Card.Body>
     </Card>
       </Link>
-    </div>
+   // </div>
       ))
     }
       </>
