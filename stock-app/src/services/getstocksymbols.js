@@ -1,4 +1,4 @@
-import {useState, useEffect, React} from 'react';
+import {useState, useEffect} from 'react';
 
 
 
@@ -6,7 +6,7 @@ import {useState, useEffect, React} from 'react';
 export const GetStockSymbols = () =>{
   
      const [error, setError] = useState(null);
-     const [isLoaded, setLoaded] = useState(false);
+  //   const [isLoaded, setLoaded] = useState(false);
      const [items, setItems] = useState([]);
     //load symbols once component is rendered 
       useEffect(() => {
@@ -14,7 +14,7 @@ export const GetStockSymbols = () =>{
           .then(res => res.json())
           .then(
             (result) => {
-               setLoaded(true);
+            //   setLoaded(true);
                 setItems(result.records);
                // console.log(result.records);
                //console.log(1);
@@ -23,24 +23,22 @@ export const GetStockSymbols = () =>{
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
-              setLoaded(true);
+          //    setLoaded(true);
               setError(error);
             }
           )
       },[]);
   
-      return items; 
+     // return items; 
     
     
-      /* Do not use
+     
       //const { error, isLoaded, items } = this.state;
         if (error) {
-          return <div>Error: {error.message}</div>;
-        } else if (!isLoaded) {
-          return <div>Loading...</div>;
+          return error.message;
         } else {
-          //return {items}
+          return items
         }
-*/
+
 }; 
 

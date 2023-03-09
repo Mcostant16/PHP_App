@@ -1,9 +1,11 @@
-
+import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 
 export default function Apple() {
 
-
+ const params = useParams();
+ console.log(params);
     return(
-    <div> Hello Apple</div>
+    <div> Hello Apple {params.symbol}</div>
     )
 }

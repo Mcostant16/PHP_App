@@ -23,8 +23,11 @@ const items = GetStockSymbols();
      
       return (
       <>
-      {
-      items.map((stockInfo,index) => (
+    {
+      //take items array an map it to a card.  
+      //using slice to return only the first 20 items becuase there are over 4000
+      //making it take a long time to load
+      items.slice(0,20).map((stockInfo,index) => (
        // <div key={index}>
 
 <Link
@@ -34,9 +37,9 @@ fishInfo.fishPath is the dynamic bit which is being used to
 generated each page's unqiue url from the array the pre-fixed main 
 path stays the same */
 
-        to={`/stockinfo/${stockInfo.name}`}
-        state={{ stockpage1 }}
-        key={index}
+        to={`/stockinfo/${stockInfo.id}`}
+        state={{ items }}
+        key={stockInfo.id}
       >
         <Card
           source={stockInfo.name}
