@@ -57,20 +57,28 @@ class Stock_History{
         switch($time) {
             case "Current":
                 $time_param = date("Y").'-01-01'; //get current year
+                break; 
             case "1yr":
                 $time_param  = date('Y-m-d', strtotime('-1 year')); //get last year
+                break; 
             case "5yr":
                 $time_param  = date('Y-m-d', strtotime('-5 year')); //get last year
+                break; 
             case "10yr":
                 $time_param  = date('Y-m-d', strtotime('-10 year')); //get last year
+                break; 
             case "Max":
                 $time_param  = '1980-01-01'; //get current year
-                  
+                break; 
+            default: 
+                $time_param = date("Y").'-01-01'; //get current year
         }
        // var_dump($time_param);
         $stmt = $this->conn->prepare(
             "Select * from history 
-            where Interval_Time = :interval and Symbol = :symbol and Date >= :time_param"
+            where Interval_Time = :interval 
+            and Symbol = :symbol and Date >= :time_param
+            Order by Date Asc"
         );
         $this->symbol=htmlspecialchars(strip_tags($this->symbol));
         $interval=htmlspecialchars(strip_tags($interval));
