@@ -75,14 +75,41 @@ private $stock;
  
 #print_r($s);
 # var_dump($s);  # un comment to see results
-
-//isntantiate class for inserting history records
-  $deleteHistory = new Stock_History($this->db, $s, $this->stock);
+//don't need to pass any records so put null
+//isntantiate class for deleting history records
+  $deleteHistory = new Stock_History($this->db, null, $this->stock);
 
 // read products will be here
 
 // Insert History Records calling insert query method on class
   $stmt = $deleteHistory->delete_Records();
+ #var_dump($data);
+  }
+
+  public function getRecords($interval,$time) {
+   // $ticker = $this->stock;
+    $iMonth = 1;
+    $iDay = 1;
+    $iYear = 1980;
+    $timestampStart = mktime(0,0,0,$iMonth,$iDay,$iYear);
+    $timestampEnd = time();
+#$period1 = int(time.mktime(datetime.datetime(2020, 1, 1, 23, 59).timetuple()));
+#$period2 = int(time.mktime(datetime.datetime(2020, 12, 31, 23, 59).timetuple()));
+   // $interval = '1wk'; # 1d, 1m
+   
+ 
+#print_r($s);
+# var_dump($s);  # un comment to see results
+//don't need to pass any records so put null
+//isntantiate class for inserting history records
+    $getHistory = new Stock_History($this->db, $s, $this->stock);
+
+// read products will be here
+
+// Insert History Records calling insert query method on class
+    $stmt = $getHistory->get_Records($interval,$time);
+      
+    return $stmt;
  #var_dump($data);
   }
 

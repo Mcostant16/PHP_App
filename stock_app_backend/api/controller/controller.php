@@ -47,6 +47,10 @@ public function  main_function() {
             $deleteStocks = new StockHistory($params['symbol']); 
             $deleteStocks->deleteRecords();
             return $endpoint[$x].'_'.$activity;
+        case "getStockData":
+            $getStocks = new StockHistory($params['symbol']); 
+            $data = $getStocks->getRecords($params['interval'],$params['time']);
+            return $data;
         default:
             //this route needs to be built
             //header("HTTP/1.1 404 Not Found");

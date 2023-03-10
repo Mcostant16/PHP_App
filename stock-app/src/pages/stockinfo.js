@@ -33,7 +33,7 @@ const items = GetStockSymbols();
 <Link
 
 /* Below is the page path with an interpolated string where 
-fishInfo.fishPath is the dynamic bit which is being used to 
+stockinfo the dynamic bit which is being used to 
 generated each page's unqiue url from the array the pre-fixed main 
 path stays the same */
 

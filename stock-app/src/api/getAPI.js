@@ -36,8 +36,6 @@ export default function MyComponent (){
           (result) => {
              setLoaded(true);
               setItems(result.records);
-             // console.log(result.records);
-             //console.log(1);
            },
           // Note: it's important to handle errors here
           // instead of a catch() block so that we don't swallow
@@ -95,7 +93,7 @@ export default function MyComponent (){
           data={items}
           options={{actionsColumnIndex: -1, detailPanelType: "single" }}
           detailPanel={(rowData) => {
-            return (<MaterialDetail name={rowData.name} />);
+            return (<MaterialDetail {...rowData} />);
               }}
           onRowClick={(event, rowData, togglePanel) => {
             // Copy row data and set checked state
