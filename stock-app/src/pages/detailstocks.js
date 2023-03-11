@@ -9,7 +9,7 @@ export default function Apple() {
  const params = useParams();
     return(
      <div> 
-    <div> Hello Apple {params.symbol}</div>
+    <div> Hello {params.symbol}</div>
     <Link to={'/stocks'} className="btn btn-primary">Back</Link>
     <Example symbol={params.symbol} />
     <StockData symbol={params.symbol}/>

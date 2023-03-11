@@ -24,6 +24,13 @@ $uri = explode( '/', $uri );
 // everything else results in a 404 Not Found
 http_response_code(200);
 
+//need this part of code because it routes to the api on the 
+//cors preflights and since it has the uri it triggers the route twice
+/////basically ignore the preflight cors option
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {    
+    return 0;    
+ }    
+
 //echo "It worked AgainS";  
 //var_dump(__DIR__);
 //echo $uri[3];  

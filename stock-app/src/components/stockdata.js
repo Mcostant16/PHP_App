@@ -8,7 +8,7 @@ function StockData(props) {
         return ( 
             <>
             {    
-                items.map((stockInfo,index) => (
+                items.slice(0,26).map((stockInfo,index) => (
                     
                     <center key={index}>
                         <Card

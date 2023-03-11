@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {GetStockHistory} from '../services/getstockhistory.js';
 import {
 
@@ -137,7 +137,11 @@ const data = [
 
 export default function Example(props) {
     //console.log(props.symbol);
+  //  const [yAxisMax, setYAxisMax] = useState(maxvalue);
     const data2 = GetStockHistory(props.symbol);
+   let maxvalue =  Math.max(...data2.map(o => o.Open)); //finds max y axis value so charts fit accordingly
+   console.log(maxvalue)
+;   //setYAxisMax(maxvalue * 1.1);
   return (
     <LineChart
       width={750}
@@ -152,7 +156,7 @@ export default function Example(props) {
     >
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="Date" />
-      <YAxis />
+      <YAxis type="number" domain={[0, maxvalue]} />
       <Tooltip />
       <Legend />
       <Line

@@ -6,6 +6,7 @@ function RetrievePostHistory(symbol) {
  //   const [error, setError] = useState(null);
 //    const [isLoaded, setLoaded] = useState(false);
  //   const [items, setItems] = useState([]);
+ console.log("Outside of Fetch");
  var Hello = "hello";
  var People = "People";
 fetch(`http://localhost/stock_app_backend/api/getHistory?symbol=${encodeURIComponent(symbol)}`, {
